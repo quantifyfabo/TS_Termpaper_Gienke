@@ -46,7 +46,7 @@ STM_topic_assignments <- apply(TS_For_Topics_STM$theta, 1, which.max)  # Most li
 STM_topic_counts <- table(STM_topic_assignments)
 STM_topic_counts_df <- as.data.frame(STM_topic_counts)            # create new checkup dataframe
 colnames(STM_topic_counts_df) <- c("Topic", "Count")          # rename variables
-STM_topic_counts_df$Topic <- c("Other", "Israel", "Incident", "EU", "USA", "Election", "Climate", "Ukraine") # rename topics
+STM_topic_counts_df$Topic <- c("Other", "Middle East", "Non-EU-States", "EU", "USA", "Election", "Climate", "Ukraine") # rename topics
 
 
 # Plot how often each Topic appears in TS_For Data, based on most likely topic per document.
@@ -54,3 +54,18 @@ ggplot(STM_topic_counts_df, aes(x = reorder(Topic, -Count), y = Count)) +
   geom_bar(stat = "identity", fill = "skyblue") +  # Balkendiagramm
   labs(title = "Number of Articles per Topic", x = "Topics", y = "Number of Articles") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Beschriftung drehen
+
+
+# Add new variables to TS Data: 
+# Most likely topic for each document ($dominant_topic) and probability of dominant topic for each document ($dominant_prob)
+TS$dominant_topic <- apply(TS_For_Topics_STM$theta, 1, which.max)
+TS$dominant_prob <- apply(TS_For_Topics_STM$theta, 1, max)
+
+# rename topics
+TS_GT <- TS %>%
+  mutate(dominant_topic = recode(dominant_topic,
+                                 "1" = "General", "2" = "Middle_East", "3" = "Non-EU-States", "4" = "EU",
+                                 "5" = "USA", "6" = "Election", "7" = "Climate", "8" = "Ukraine"
+  ))
+
+
