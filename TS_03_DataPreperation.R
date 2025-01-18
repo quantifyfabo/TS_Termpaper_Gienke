@@ -30,17 +30,21 @@ TS$text <- gsub("\\s+", " ", TS$text)
 TS$date <- gsub("•.*", "", TS$date)
 TS$date <- dmy(TS$date)
 TS$week <- isoweek(TS$date)
-TS$week <- ifelse(format(TS$date, "%Y") == "2025", # Add "_25" to indicate weeks in 2025
-                  paste0(TS$week, "_25"),TS$week)
+
+# Make $week continue in 2025 to prevent duplicates
+TS$week <- ifelse(
+  format(TS$date, "%Y") == "2025", 
+  as.numeric(TS$week) + 52 ,  # Kalenderwochen um 52 erhöhen für 2025
+  as.numeric(TS$week))        # Original-Woche für andere Jahre
+
 
 # Create $month
-TS$month <- format(TS$date, "%b")  # Kurzer Monat, z.B. "Jan", "Feb", etc.
-TS$month <- toupper(TS$month) # Großbuchstaben für den Monat
+TS$month <- format(TS$date, "%b") 
+TS$month <- toupper(TS$month)
 
 
 
 # Tokenize
-
 TS_For_Corpus <- corpus(tolower(TS$text),
                         docvars = TS) 
 
