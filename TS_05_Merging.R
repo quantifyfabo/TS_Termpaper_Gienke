@@ -12,23 +12,27 @@
 # count the topic for each week
 # add result to the GT_USA Dataset
 
-usa_counts <- TS_GT %>%
+TS_usa_counts <- TS_GT %>%
   filter(dominant_topic == "USA") %>%        # Filter auf "USA" in der Variable dominant_topic
   group_by(week) %>%                         # Gruppieren nach Woche
-  summarise(count_usa = n()) %>%             # Anzahl der Fälle pro Woche zählen
+  summarise(ts_count_usa = n()) %>%             # Anzahl der Fälle pro Woche zählen
   ungroup()                                  # Gruppierung entfernen
 
 # Neue Variable zu GT_USA hinzufügen
-GT_USA <- GT_USA %>%
-  left_join(usa_counts, by = "week")         # Join nach Woche
+gt_us <- gt_us %>%
+  left_join(TS_usa_counts, by = "week")         # Join nach Woche
 
 
 
 # Visualize
-ggplot(GT_USA, aes(x = week)) +
-  geom_line(aes(y = count_usa, color = "Tagesschau"), size = 1) + # Line for count_usa
-  geom_line(aes(y = USA_Score, color = "Google Trends"), size = 1) + # Line for USA_score
-  scale_color_manual(values = c("Tagesschau" = "red", "Google Trends" = "blue")) + # Custom colors
+ggplot(gt_us, aes(x = week)) +
+  geom_line(aes(y = ts_count_usa, color = "Tagesschau"), size = 1.8) + 
+  geom_line(aes(y = USA_ScoreGT, color = "GT USA"), size = 0.6) +
+  geom_line(aes(y = Trump_ScoreGT, color = "GT Trump"), size = 0.6) +
+  geom_line(aes(y = Biden_ScoreGT, color = "GT Biden"), size = 0.6) +
+  geom_line(aes(y = Harris_ScoreGT, color = "GT Harris"), size = 0.6) +
+  scale_color_manual(values = c("Tagesschau" = "red", "GT USA" = "blue", "GT Trump" = "green", 
+                                "GT Biden" = "yellow", "GT Harris" = "black")) + 
   labs(
     title = "USA - Google Trends in % of the annual peak vs. number of tagesschau articles per week",
     x = "Week",
