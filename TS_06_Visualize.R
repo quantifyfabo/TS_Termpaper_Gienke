@@ -40,3 +40,4 @@ ggplot(gt_us, aes(x = week)) +
 cor(gt_us$Trump_ScoreGT, gt_us$ts_count_usa)
 cor(gt_us$Trump_ScoreGT, gt_us$ts_percentage_of_peak)
 
+# uss
