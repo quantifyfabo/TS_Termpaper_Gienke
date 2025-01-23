@@ -37,6 +37,10 @@ TS$week <- ifelse(
   as.numeric(TS$week) + 52 ,  # Kalenderwochen um 52 erhöhen für 2025
   as.numeric(TS$week))        # Original-Woche für andere Jahre
 
+# Special Case for "2024-12-30", "2024-12-31" to add them to week 52
+TS$week <- ifelse(format(TS$date, "%Y-%m-%d") %in% c("2024-12-30", "2024-12-31"), 52, TS$week)
+
+
 
 # Create $month
 TS$month <- format(TS$date, "%b") 
