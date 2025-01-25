@@ -92,3 +92,6 @@ cor(gt_mideast$ts_count_mideast, gt_mideast$Israel_ScoreGT)
 cor(gt_mideast$ts_count_mideast, gt_mideast$Hamas_ScoreGT)
 cor(gt_mideast$ts_count_mideast, gt_mideast$Iran_ScoreGT)
 cor(gt_mideast$ts_count_mideast, gt_mideast$Gaza_ScoreGT)
+
+
+
