@@ -62,10 +62,10 @@ TS$dominant_topic <- apply(TS_For_Topics_STM$theta, 1, which.max)
 TS$dominant_prob <- apply(TS_For_Topics_STM$theta, 1, max)
 
 # rename topics
-TS_GT <- TS %>%
+TS <- TS %>%
   mutate(dominant_topic = recode(dominant_topic,
                                  "1" = "General", "2" = "Middle_East", "3" = "Non-EU-States", "4" = "EU",
                                  "5" = "USA", "6" = "Election", "7" = "Climate", "8" = "Ukraine"
   ))
-
+  
 

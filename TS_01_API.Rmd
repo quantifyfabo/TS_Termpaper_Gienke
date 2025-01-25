@@ -38,7 +38,7 @@ dates_list <- list()
 
 
 # Loop
-for (day in 1:31) {
+for (day in 11:31) {
   # Use wrapper for correct formatting in -DD-
   day_str <- sprintf("%02d", day)  
   
@@ -637,8 +637,9 @@ TS_For_JAN25 <- data.frame(
 TS_ALL_Foreign_RAW <- bind_rows(TS_For_JAN, TS_For_FEB, TS_For_MAR, 
                                 TS_For_APR, TS_For_MAY, TS_For_JUN, 
                                 TS_For_JUL, TS_For_AUG, TS_For_SEP, 
-                                TS_For_OCT, TS_For_NOV, TS_For_DEC, 
-                                TS_For_JAN25)
+                                TS_For_OCT, TS_For_NOV, TS_For_DEC,
+                                TS_For_JAN25
+                                )
 
 
 
@@ -647,6 +648,6 @@ end_time <- Sys.time()
 time_taken <- end_time - start_time
 time_taken
 
-write.csv(TS_ALL_Foreign_RAW, file = "C:/Datasets/tagesschau_folder/TS_ALL_Foreign_RAW_1001.csv", row.names = FALSE)
+write.csv(TS_ALL_Foreign_RAW, file = "C:/Datasets/tagesschau_folder/TS_ALL_Foreign_RAW_2024.csv", row.names = FALSE)
 ```
 
