@@ -62,7 +62,7 @@ gt_mideast$week <- ifelse(
   as.numeric(gt_mideast$week))        
 
 #make all variables except $dateGT to numeric 
-mideast_numvars <- c("dateGT", "Israel_ScoreGT", "Hamas_ScoreGT", "Iran_ScoreGT", "Gaza_ScoreGT")
+mideast_numvars <- c("Israel_ScoreGT", "Hamas_ScoreGT", "Iran_ScoreGT", "Gaza_ScoreGT")
 gt_mideast[mideast_numvars] <- lapply(gt_mideast[mideast_numvars], as.numeric)
 
 
@@ -95,7 +95,7 @@ gt_ukraine$week <- ifelse(
   as.numeric(gt_ukraine$week))        
 
 #make all variables except $dateGT to numeric 
-ukraine_numvars <- c("dateGT", "Ukraine_ScoreGT", "Russland_ScoreGT", "Kiew_ScoreGT", "Selenskyj_ScoreGT")
+ukraine_numvars <- c("Ukraine_ScoreGT", "Russland_ScoreGT", "Kiew_ScoreGT", "Selenskyj_ScoreGT")
 gt_ukraine[ukraine_numvars] <- lapply(gt_ukraine[ukraine_numvars], as.numeric)
 
 
