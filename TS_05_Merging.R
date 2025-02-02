@@ -14,7 +14,7 @@
 
 
 # Merge TS and gt_us
-TS_usa_counts <- TS_GT %>%
+TS_usa_counts <- TS %>%
   filter(dominant_topic == "USA") %>%        # filter for "USA" as dominant_topic
   group_by(week) %>%                         # goup by week
   summarise(ts_count_usa = n()) %>%          # summarise by cases per week
@@ -32,16 +32,34 @@ gt_us$ts_percentage_of_peak <- (gt_us$ts_count_usa / max(gt_us$ts_count_usa)) * 
 # --
 
 # Merging the Mideast Topic from TS into gt_mideast
-TS_mideast_counts <- TS_GT %>%
-  filter(dominant_topic == "Middle_East") %>%        # filter for "USA" as dominant_topic
-  group_by(week) %>%                         # goup by week
-  summarise(ts_count_mideast = n()) %>%          # summarise by cases per week
-  ungroup()                                  # delete grouping
+TS_mideast_counts <- TS %>%
+  filter(dominant_topic == "Middle_East") %>%
+  group_by(week) %>%
+  summarise(ts_count_mideast = n()) %>%
+  ungroup()
 
-# Neue Variable zu GT_USA hinzufügen
+# add new variable to us_gt
 gt_mideast <- gt_mideast %>%
   left_join(TS_mideast_counts, by = "week")         # merge based on $week (both in TS and gt)
 
 # Normalize ts_count_us based on 100% annual peak, add as new variable
 gt_mideast$ts_percentage_of_peak <- (gt_mideast$ts_count_mideast / max(gt_mideast$ts_count_mideast)) * 100
 
+
+
+# --
+
+# Merging the Ukraine Topic from TS into gt_ukraine
+TS_ukraine_counts <- TS %>% 
+  filter(dominant_topic == "Ukraine") %>% 
+  group_by(week) %>% 
+  summarise(ts_count_ukraine = n()) %>% 
+  ungroup()
+
+# Add new Variable to gt_ukraine
+gt_ukraine <- gt_ukraine %>% 
+  left_join(TS_ukraine_counts, by = "week") %>% 
+  mutate(ts_count_ukraine = replace_na(ts_count_ukraine, 0))
+
+# Normalize ts_count_ukraine based on 100% annual peak, add as new variable
+gt_ukraine$ts_percentage_of_peak <- (gt_ukraine$ts_count_ukraine / max(gt_ukraine$ts_count_ukraine)) * 100
