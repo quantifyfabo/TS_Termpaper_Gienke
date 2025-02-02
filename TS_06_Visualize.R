@@ -105,14 +105,14 @@ cor(gt_mideast$ts_count_mideast, gt_mideast$Gaza_ScoreGT)
 # # Visualize Topic "Middle_East": GT (relative % of anunal peak) + TS (absolute article count)
 ggplot(gt_ukraine, aes(x = week)) +
   geom_line(aes(y = ts_count_ukraine, color = "Tagesschau"), size = 1.8) + 
-  geom_line(aes(y = Ukraine_ScoreGT, color = "GT Israel"), size = 1) +
+  geom_line(aes(y = Ukraine_ScoreGT, color = "GT Ukraine"), size = 1) +
   geom_line(aes(y = Russland_ScoreGT, color = "GT Russland"), size = 1) +
   geom_line(aes(y = Kiew_ScoreGT, color = "GT Kiew"), size = 1) +
   geom_line(aes(y = Selenskyj_ScoreGT, color = "GT Selenskyj"), size = 1) +
-  scale_color_manual(values = c("Tagesschau" = "red", "GT Israel" = "blue", "GT Russland" = "green", 
+  scale_color_manual(values = c("Tagesschau" = "red", "GT Ukraine" = "blue", "GT Russland" = "green", 
                                 "GT Kiew" = "yellow", "GT Selenskyj" = "black")) + 
   labs(
-    title = "Middle East - Google Trends in % of the annual peak vs. number of tagesschau articles per week",
+    title = "Ukraine - Google Trends in % of the annual peak vs. number of tagesschau articles per week",
     x = "Week",
     y = "Value",
     color = "Legend"
@@ -127,9 +127,9 @@ ggplot(gt_ukraine, aes(x = week)) +
   geom_line(aes(y = Kiew_ScoreGT, color = "GT Kiew"), size = 1) +
   geom_line(aes(y = Selenskyj_ScoreGT, color = "GT Selenskyj"), size = 1) +
   scale_color_manual(values = c("Tagesschau" = "red", "GT Ukraine" = "blue", "GT Russland" = "green", 
-                                "GT Kiew" = "yellow", "GT Selenskyj" = "black")) + 
+                                "GT Kiew" = "white", "GT Selenskyj" = "white")) + 
   labs(
-    title = "Middle East - Google Trends vs. Tagesschau Articles in % of annual peak",
+    title = "Ukraine - Google Trends vs. Tagesschau Articles in % of annual peak",
     x = "Week",
     y = "Value",
     color = "Legend"
@@ -146,7 +146,22 @@ cor(gt_ukraine$ts_count_ukraine, gt_ukraine$Selenskyj_ScoreGT)
 
 
 
+# visualize articles per week
+case_counts <- as.data.frame(table(TS$week))
+colnames(case_counts) <- c("week", "count")
+case_counts$week <- as.numeric(case_counts$week)
 
+
+# Plot erstellen
+ggplot(case_counts, aes(x = week, y = count)) +
+  geom_bar(stat = "identity", fill = "#4A6572") +
+  labs(title = "",
+       x = "Week",
+       y = "Published Articles") +
+  scale_x_continuous(breaks = seq(min(case_counts$week), max(case_counts$week), by = 5)) +
+  theme_classic()
+
+summary(case_counts$count)
 
 
 
