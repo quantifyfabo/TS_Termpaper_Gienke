@@ -8,7 +8,7 @@
 ## USA
 
 # Data preperation for the Google Trends data for the topic "USA"
-# Load csv files of GT search terms "USA", "Trump", "Biden", "Harris" in the time frame 11.01.2024 to 11.01.2025
+# Load and process csv files of GT search terms "USA", "Trump", "Biden", "Harris" in the time frame 11.01.2024 to 11.01.2025
 gt_usa_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_USA_1101.csv", header = FALSE)
 gt_trump_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Trump_1101.csv", header = FALSE)
 gt_biden_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Biden_1101.csv", header = FALSE)
@@ -39,8 +39,7 @@ gt_us[us_numvars] <- lapply(gt_us[us_numvars], as.numeric)
 
 ## Middle East
 
-# data preperation for the Google Trends data for the topic "Middle East"
-# load csv files of GT search terms "Israel", "Hamas", "Iran", "Gaza" in the time frame 11.01.2024 to 11.01.2025
+# load and process csv files of GT search terms "Israel", "Hamas", "Iran", "Gaza" in the time frame 11.01.2024 to 11.01.2025
 gt_israel_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Israel_1101.csv", header = FALSE)
 gt_hamas_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Hamas_1101.csv", header = FALSE)
 gt_iran_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Iran_1101.csv", header = FALSE)
@@ -67,8 +66,7 @@ gt_mideast[mideast_numvars] <- lapply(gt_mideast[mideast_numvars], as.numeric)
 
 ## Ukraine
 
-# data preperation for the Google Trends data for the topic "Ukraine"
-# load csv files of GT search terms "Ukraine", "Russland", "Kiew", "Gaza" in the time frame 11.01.2024 to 11.01.2025
+# load and process csv files of GT search terms "Ukraine", "Russland", "Kiew", "Gaza" in the time frame 11.01.2024 to 11.01.2025
 gt_ukraine_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Ukraine_1101.csv", header = FALSE)
 gt_russland_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Russland_1101.csv", header = FALSE)
 gt_kiew_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Kiew_1101.csv", header = FALSE)
@@ -95,8 +93,7 @@ gt_ukraine[ukraine_numvars] <- lapply(gt_ukraine[ukraine_numvars], as.numeric)
 
 ## EU
 
-# data preperation for the Google Trends data for the topic "EU"
-# load csv files of GT search terms "EU", "Europa", "Union", "Frankreich" in the time frame 11.01.2024 to 11.01.2025
+# load and process csv files of GT search terms "EU", "Europa", "Union", "Frankreich" in the time frame 11.01.2024 to 11.01.2025
 gt_eu_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_EU_1101.csv", header = FALSE)
 gt_europa_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Europa_1101.csv", header = FALSE)
 gt_union_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Union_1101.csv", header = FALSE)
@@ -117,16 +114,4 @@ gt_eu$week <- ifelse(
 
 eu_numvars <- c("EU_ScoreGT", "Europa_ScoreGT", "Union_ScoreGT", "Frankreich_ScoreGT")
 gt_eu[eu_numvars] <- lapply(gt_eu[eu_numvars], as.numeric)
-
-
-
-
-
-
-
-
-
-
-
-
 
