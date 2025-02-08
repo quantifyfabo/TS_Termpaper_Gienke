@@ -3,7 +3,7 @@
 # The same process is applied for all TS topic assignments based on STM and keyATM. USA contains a description in comments format.
 
 
-# Part 1 - Merging based on STM for "USA", "Middle East", "Ukraine", "EU"
+# Merging based on TS Topic assignments from STM and keyATM for "USA", "Middle East", "Ukraine", "EU".
 
 
 
@@ -13,27 +13,27 @@
 ts_usa_stm <- TS %>%
   filter(dominant_topic == "USA") %>%        # filter for "USA" as dominant_topic
   group_by(week) %>%                         # group by week
-  summarise(ts_stm_usa = n()) %>%          # summarise by cases per week
+  summarise(ts_stm_usa = n()) %>%            # summarise by cases per week
   ungroup()                                  # delete grouping
 
 # merging by dplyrs join, so information form TS is merged into GT for Topic USA
 gt_us <- gt_us %>%
-  left_join(ts_usa_stm, by = "week")      # merge based on $week (both in TS and gt)
+  left_join(ts_usa_stm, by = "week")         # merge based on $week (both in TS and gt)
 
 # Normalize ts_stm_us based on 100 = annual peak, add as new variable
 gt_us$ts_norm_us_stm <- (gt_us$ts_stm_usa / max(gt_us$ts_stm_usa)) * 100
-# gt_us now contains two new variables $TS_usa_stms and $ts_norm_us
+# gt_us now contains two new variables $TS_usa_stm and $ts_norm_us
 
 # Merge TS & GT based on keyATM topic aissgnments for "USA"
 ts_usa_atm <- TS %>%
-  filter(ATM_dominant_topic == "USA") %>%        # filter for "USA" as dominant_topic
+  filter(ATM_dominant_topic == "USA") %>%    # filter for "USA" as dominant_topic
   group_by(week) %>%                         # group by week
-  summarise(ts_atm_usa = n()) %>%          # summarise by cases per week
-  ungroup()                                # delete grouping
+  summarise(ts_atm_usa = n()) %>%            # summarise by cases per week
+  ungroup()                                  # delete grouping
 
 # merging by dplyrs join, so information form TS is merged into GT for Topic USA
 gt_us <- gt_us %>%
-  left_join(ts_usa_atm, by = "week")      # merge based on $week (both in TS and gt)
+  left_join(ts_usa_atm, by = "week")         # merge based on $week (both in TS and gt)
 
 # Normalize ts_atm_us based on 100 = annual peak, add as new variable
 gt_us$ts_norm_us_atm <- (gt_us$ts_atm_usa / max(gt_us$ts_atm_usa)) * 100
@@ -89,7 +89,7 @@ gt_ukraine <- gt_ukraine %>%
 
 gt_ukraine$ts_norm_ukraine_stm <- (gt_ukraine$ts_stm_ukraine / max(gt_ukraine$ts_stm_ukraine)) * 100
 
-# Merge key ATM
+# Merge keyATM
 ts_ukraine_atm <- TS %>% 
   filter(ATM_dominant_topic == "Ukraine") %>% 
   group_by(week) %>% 
