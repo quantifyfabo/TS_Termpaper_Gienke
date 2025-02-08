@@ -46,7 +46,7 @@ gt_us$ts_norm_us_atm <- (gt_us$ts_atm_usa / max(gt_us$ts_atm_usa)) * 100
 
 # Middle East
 
-# STM
+# Merge STM
 ts_mideast_stm <- TS %>%
   filter(dominant_topic == "Middle_East") %>%
   group_by(week) %>%
@@ -58,7 +58,7 @@ gt_mideast <- gt_mideast %>%
 
 gt_mideast$ts_norm_mideast_stm <- (gt_mideast$ts_stm_mideast / max(gt_mideast$ts_stm_mideast)) * 100
 
-# keyATM
+# Merge keyATM
 ts_mideast_atm <- TS %>%
   filter(ATM_dominant_topic == "Middle_East") %>%
   group_by(week) %>%
@@ -76,7 +76,7 @@ gt_mideast$ts_norm_mideast_atm <- (gt_mideast$ts_atm_mideast / max(gt_mideast$ts
 
 # Ukraine
 
-# STM
+# Merge STM
 ts_ukraine_stm <- TS %>% 
   filter(dominant_topic == "Ukraine") %>% 
   group_by(week) %>% 
@@ -89,7 +89,7 @@ gt_ukraine <- gt_ukraine %>%
 
 gt_ukraine$ts_norm_ukraine_stm <- (gt_ukraine$ts_stm_ukraine / max(gt_ukraine$ts_stm_ukraine)) * 100
 
-# key ATM
+# Merge key ATM
 ts_ukraine_atm <- TS %>% 
   filter(ATM_dominant_topic == "Ukraine") %>% 
   group_by(week) %>% 
@@ -104,7 +104,7 @@ gt_ukraine$ts_norm_ukraine_atm <- (gt_ukraine$ts_atm_ukraine / max(gt_ukraine$ts
 
 # EU
 
-#STM
+# Merge STM
 ts_eu_stm <- TS %>% 
   filter(dominant_topic == "EU") %>% 
   group_by(week) %>% 
@@ -116,7 +116,7 @@ gt_eu <- gt_eu %>%
 
 gt_eu$ts_norm_eu_stm <- (gt_eu$ts_stm_eu / max(gt_eu$ts_stm_eu)) * 100
 
-# keyATM
+# Merge keyATM
 ts_eu_atm <- TS %>% 
   filter(ATM_dominant_topic == "EU") %>% 
   group_by(week) %>% 
