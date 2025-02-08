@@ -102,6 +102,39 @@ gt_ukraine[ukraine_numvars] <- lapply(gt_ukraine[ukraine_numvars], as.numeric)
 
 
 
+# EU
+# data preperation for the Google Trends data for the topic "EU"
+# load csv files of GT search terms "EU", "Europa", "Union", "Frankreich" in the time frame 11.01.2024 to 11.01.2025
+gt_eu_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_EU_1101.csv", header = FALSE)
+gt_europa_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Europa_1101.csv", header = FALSE)
+gt_union_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Union_1101.csv", header = FALSE)
+gt_frankreich_raw <- read.csv("C:/Datasets/tagesschau_folder/GT/GT_Frankreich_1101.csv", header = FALSE)
+
+# Merge GT_raw csv files to one dataset based on week variable, rename variables, delete last 2 rows.
+gt_eu <- Reduce(function(x, y) merge(x,y, by = "V1", all = T), list(gt_eu_raw, gt_europa_raw, gt_union_raw, gt_frankreich_raw))
+colnames(gt_eu) <- c("dateGT", "EU_ScoreGT", "Europa_ScoreGT", "Union_ScoreGT", "Frankreich_ScoreGT")
+gt_eu <- head(gt_eu, -2)
+
+# Format the date and create $week variable
+gt_eu$dateGT <- as.Date(gt_eu$dateGT)
+gt_eu$dateGT <- gt_eu$dateGT + 3  # +3 days to cover right week (important to switch year to 2025 after week 52)
+gt_eu$week <- isoweek(gt_eu$dateGT)
+
+# Make $week continue in 2025 to prevent duplicates
+gt_eu$week <- ifelse(
+  format(gt_eu$dateGT, "%Y") == "2025", 
+  as.numeric(gt_eu$week) + 52 ,  # +52 weeks when year==2025
+  as.numeric(gt_eu$week))        
+
+#make all variables except $dateGT to numeric 
+eu_numvars <- c("EU_ScoreGT", "Europa_ScoreGT", "Union_ScoreGT", "Frankreich_ScoreGT")
+gt_eu[eu_numvars] <- lapply(gt_eu[eu_numvars], as.numeric)
+
+
+
+
+
+
 
 
 
