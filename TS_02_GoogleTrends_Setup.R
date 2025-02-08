@@ -2,7 +2,7 @@
 # the code below uses data from Google Trends. Search terms were selected based on resulting topics from stm in "TS_04_TopicModels"
 # Topics: "USA" , "Middle East", "Ukraine"
 
-
+# test
 # US
 
 # data preperation for the Google Trends data for the topic "USA"
