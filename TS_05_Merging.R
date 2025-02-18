@@ -38,7 +38,9 @@ gt_us <- gt_us %>%
 # Normalize ts_atm_us based on 100 = annual peak, add as new variable
 gt_us$ts_norm_us_atm <- (gt_us$ts_atm_usa / max(gt_us$ts_atm_usa)) * 100
 
-
+# Create a combined version of GT Search Terms (Sum of All GT Terms / 4)
+gt_us <- gt_us %>% 
+  mutate(MeanGT = rowMeans(select(., USA_ScoreGT, Trump_ScoreGT, Biden_ScoreGT, Harris_ScoreGT)))
 
 
 
@@ -70,7 +72,8 @@ gt_mideast <- gt_mideast %>%
 
 gt_mideast$ts_norm_mideast_atm <- (gt_mideast$ts_atm_mideast / max(gt_mideast$ts_atm_mideast)) * 100
 
-
+gt_mideast <- gt_mideast %>% 
+  mutate(MeanGT = rowMeans(select(., Israel_ScoreGT, Hamas_ScoreGT, Iran_ScoreGT, Gaza_ScoreGT)))
 
 
 
@@ -101,6 +104,8 @@ gt_ukraine <- gt_ukraine %>%
 
 gt_ukraine$ts_norm_ukraine_atm <- (gt_ukraine$ts_atm_ukraine / max(gt_ukraine$ts_atm_ukraine)) * 100
 
+gt_ukraine <- gt_ukraine %>% 
+  mutate(MeanGT = rowMeans(select(., Ukraine_ScoreGT, Russland_ScoreGT, Kiew_ScoreGT, Selenskyj_ScoreGT)))
 
 # EU
 
@@ -128,6 +133,8 @@ gt_eu <- gt_eu %>%
 
 gt_eu$ts_norm_eu_atm <- (gt_eu$ts_atm_eu / max(gt_eu$ts_atm_eu)) * 100
 
+gt_eu <- gt_eu %>% 
+  mutate(MeanGT = rowMeans(select(., EU_ScoreGT, Europa_ScoreGT, Union_ScoreGT, Frankreich_ScoreGT)))
 
 
 

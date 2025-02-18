@@ -46,8 +46,7 @@ TS %>%
   count(ATM_dominant_topic) %>%  # Zähle die Häufigkeiten der Kategorien
   ggplot(aes(x = reorder(ATM_dominant_topic, -n), y = n, fill = ATM_dominant_topic)) +
   geom_col() +  # Erstellt die Balken
-  labs(title = "Häufigkeit der ATM-Dominant Topics",
-       x = "Topic",
-       y = "Anzahl") +
-  theme_minimal() +
+  labs(x = "Topic",
+       y = "Count") +
+  theme_classic() +
   theme(legend.position = "none")  # Entfernt die Legende (optional)

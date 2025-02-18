@@ -40,7 +40,6 @@ plot(TS_For_Topics_STM)
 topicQuality(model = TS_For_Topics_STM,
              documents = TS_For_DFM)
 
-
 # create dataframe to show count of each documents most likely topic based on $theta from STM.
 STM_topic_assignments <- apply(TS_For_Topics_STM$theta, 1, which.max)  # Most likely topic for each document
 STM_topic_counts <- table(STM_topic_assignments)
@@ -52,7 +51,7 @@ STM_topic_counts_df$Topic <- c("Other", "Middle East", "Non-EU-States", "EU", "U
 # Plot how often each Topic appears in TS_For Data, based on most likely topic per document.
 ggplot(STM_topic_counts_df, aes(x = reorder(Topic, -Count), y = Count)) +
   geom_bar(stat = "identity", fill = "skyblue") +  # Balkendiagramm
-  labs(title = "Number of Articles per Topic", x = "Topics", y = "Number of Articles") +
+  labs(title = "Number of Articles per Topic, published in Tagesschau Foreign Archive - based on STM", x = "Topics", y = "Number of Articles") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Beschriftung drehen
 
 

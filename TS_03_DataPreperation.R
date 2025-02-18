@@ -65,7 +65,7 @@ stoptext <- read.table(url("https://raw.githubusercontent.com/stopwords-iso/stop
 stop_list <- stoptext[[1]]
 TS_For_Tokens <- tokens_remove(TS_For_Tokens, stop_list)
 
-# DFM
+# Data Frequency Matrix as basis for STM
 TS_For_DFM <- dfm(TS_For_Tokens)
 topfeatures(TS_For_DFM)
 
