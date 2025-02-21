@@ -33,7 +33,6 @@ end_time <- Sys.time()
 time_taken <- end_time - start_time
 time_taken
 
-
 # Results of STM
 summary(TS_For_Topics_STM)
 plot(TS_For_Topics_STM)
@@ -60,6 +59,7 @@ ggplot(STM_topic_counts_df, aes(x = reorder(Topic, -Count), y = Count)) +
 TS$dominant_topic <- apply(TS_For_Topics_STM$theta, 1, which.max)
 TS$dominant_prob <- apply(TS_For_Topics_STM$theta, 1, max)
 
+
 # rename topics
 TS <- TS %>%
   mutate(dominant_topic = recode(dominant_topic,
@@ -67,4 +67,3 @@ TS <- TS %>%
                                  "5" = "USA", "6" = "Election", "7" = "Climate", "8" = "Ukraine"
   ))
   
-

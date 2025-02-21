@@ -6,7 +6,6 @@
 # Merging based on TS Topic assignments from STM and keyATM for "USA", "Middle East", "Ukraine", "EU".
 
 
-
 # USA
 
 # Merge TS & GT based on STM topic aissgnments for "USA"

@@ -40,8 +40,6 @@ TS$week <- ifelse(
 # Special Case for "2024-12-30", "2024-12-31" to add them to week 52
 TS$week <- ifelse(format(TS$date, "%Y-%m-%d") %in% c("2024-12-30", "2024-12-31"), 52, TS$week)
 
-
-
 # Create $month
 TS$month <- format(TS$date, "%b") 
 TS$month <- toupper(TS$month)
@@ -68,4 +66,3 @@ TS_For_Tokens <- tokens_remove(TS_For_Tokens, stop_list)
 # Data Frequency Matrix as basis for STM
 TS_For_DFM <- dfm(TS_For_Tokens)
 topfeatures(TS_For_DFM)
-

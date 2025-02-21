@@ -1,4 +1,4 @@
-# Applying keyATM based on topics identified in in 04_Topic Mpodels STM.
+# Applying keyATM based on topics identified in in 04_Topic_STM.
 
 keyATM_docs <- keyATM_read(texts = TS_For_DFM)
 
@@ -17,7 +17,7 @@ key_topics <- keyATM(
   options = list(seed = 2025)
 )
 
-# result
+# results
 top_words(key_topics)
 plot_topicprop(key_topics, show_topic = 1:4)
 

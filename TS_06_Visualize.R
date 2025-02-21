@@ -72,6 +72,8 @@ cor(gt_us$MeanGT, gt_us$ts_atm_usa)
 
 
 
+
+
 ### Middle East
 
 
@@ -103,6 +105,19 @@ ggplot(gt_mideast, aes(x = week)) +
                                 "GT Iran" = "yellow", "GT Gaza" = "black")) + 
   labs(
     title = "Middle East - Google Trends vs. Tagesschau Articles in % of annual peak",
+    x = "Week",
+    y = "Value",
+    color = "Legend"
+  ) +
+  theme_minimal()
+
+#MeanGT
+ggplot(gt_mideast, aes(x = week)) +
+  geom_line(aes(y = ts_norm_mideast_atm, color = "Tagesschau"), size = 1.8) + 
+  geom_line(aes(y = MeanGT, color = "MeanGT"), size = 1) +
+  scale_color_manual(values = c("Tagesschau" = "red", "MeanGT" = "blue")) + 
+  labs(
+    title = "Middle East - Correlation TS and MeanGT",
     x = "Week",
     y = "Value",
     color = "Legend"
@@ -159,7 +174,20 @@ ggplot(gt_ukraine, aes(x = week)) +
   scale_color_manual(values = c("Tagesschau" = "red", "GT Ukraine" = "blue", "GT Russland" = "green", 
                                 "GT Kiew" = "yellow", "GT Selenskyj" = "black")) + 
   labs(
-    title = "Ukraine - Google Trends vs. Tagesschau Articles in % of annual peak",
+    title = "Ukraine - GT vs. TS normalized, based on keyATM",
+    x = "Week",
+    y = "Value",
+    color = "Legend"
+  ) +
+  theme_minimal()
+
+#MeanGT
+ggplot(gt_ukraine, aes(x = week)) +
+  geom_line(aes(y = ts_norm_ukraine_atm, color = "Tagesschau"), size = 1.8) + 
+  geom_line(aes(y = MeanGT, color = "MeanGT"), size = 1) +
+  scale_color_manual(values = c("Tagesschau" = "red", "MeanGT" = "blue")) + 
+  labs(
+    title = "Ukraine - Correlation TS normalized and MeanGT",
     x = "Week",
     y = "Value",
     color = "Legend"
@@ -216,7 +244,20 @@ ggplot(gt_eu, aes(x = week)) +
   scale_color_manual(values = c("Tagesschau" = "red", "GT EU" = "blue", "GT Europa" = "green", 
                                 "GT Union" = "yellow", "GT Frankreich" = "black")) + 
   labs(
-    title = "EU - Google Trends vs. Tagesschau Articles in % of annual peak",
+    title = "EU - GT vs. TS normalized, based on keyATM",
+    x = "Week",
+    y = "Value",
+    color = "Legend"
+  ) +
+  theme_minimal()
+
+#MeanGT
+ggplot(gt_eu, aes(x = week)) +
+  geom_line(aes(y = ts_norm_eu_atm, color = "Tagesschau"), size = 1.8) + 
+  geom_line(aes(y = MeanGT, color = "MeanGT"), size = 1) +
+  scale_color_manual(values = c("Tagesschau" = "red", "MeanGT" = "blue")) + 
+  labs(
+    title = "EU - Correlation TS normalized and MeanGT",
     x = "Week",
     y = "Value",
     color = "Legend"
@@ -240,7 +281,7 @@ cor(gt_eu$ts_atm_eu, gt_eu$Frankreich_ScoreGT)
 cor(gt_eu$ts_atm_eu, gt_eu$MeanGT)
 
 
-
+# Additional Plots
 
 # visualize articles per week
 case_counts <- as.data.frame(table(TS$week))
@@ -248,7 +289,7 @@ colnames(case_counts) <- c("week", "count")
 case_counts$week <- as.numeric(case_counts$week)
 
 
-# Plot erstellen
+# Plot published aticles per week
 ggplot(case_counts, aes(x = week, y = count)) +
   geom_bar(stat = "identity", fill = "#4A6572") +
   labs(title = "",

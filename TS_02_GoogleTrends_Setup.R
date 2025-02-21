@@ -4,7 +4,6 @@
 
 
 
-
 ## USA
 
 # Data preperation for the Google Trends data for the topic "USA"
