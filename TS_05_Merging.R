@@ -2,11 +2,11 @@
 # The following code uses the preprocessed data from Google Trends (File = TS_02_GoogleTrends_Setup) and merges with TS based on $week
 # The same process is applied for all TS topic assignments based on STM and keyATM. USA contains a description in comments format.
 
-
 # Merging based on TS Topic assignments from STM and keyATM for "USA", "Middle East", "Ukraine", "EU".
 
 
-# USA
+
+## USA
 
 # Merge TS & GT based on STM topic aissgnments for "USA"
 ts_usa_stm <- TS %>%
@@ -43,9 +43,7 @@ gt_us <- gt_us %>%
 
 
 
-
-
-# Middle East
+## Middle East
 
 # Merge STM
 ts_mideast_stm <- TS %>%
@@ -76,7 +74,7 @@ gt_mideast <- gt_mideast %>%
 
 
 
-# Ukraine
+## Ukraine
 
 # Merge STM
 ts_ukraine_stm <- TS %>% 
@@ -106,7 +104,9 @@ gt_ukraine$ts_norm_ukraine_atm <- (gt_ukraine$ts_atm_ukraine / max(gt_ukraine$ts
 gt_ukraine <- gt_ukraine %>% 
   mutate(MeanGT = rowMeans(select(., Ukraine_ScoreGT, Russland_ScoreGT, Kiew_ScoreGT, Selenskyj_ScoreGT)))
 
-# EU
+
+
+## EU
 
 # Merge STM
 ts_eu_stm <- TS %>% 
