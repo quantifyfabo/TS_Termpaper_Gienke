@@ -114,3 +114,5 @@ gt_eu$week <- ifelse(
 eu_numvars <- c("EU_ScoreGT", "Europa_ScoreGT", "Union_ScoreGT", "Frankreich_ScoreGT")
 gt_eu[eu_numvars] <- lapply(gt_eu[eu_numvars], as.numeric)
 
+
+# The GT datasets will be used again in TS_05_Merging.R
